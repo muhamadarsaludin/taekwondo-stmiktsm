@@ -1,0 +1,43 @@
+@import 'fonts';
+@import 'components/button.scss';
+@import 'components/color.scss';
+@import 'components/inputfile.scss';
+@import 'components/swiper-thumbs.scss';
+@import 'components/card.scss';
+
+
+a{
+  text-decoration: none !important;
+}
+
+.bg-purple {
+  background-color: #4A25AA;
+}
+.bg-yellow {
+  background-color: #FBE400;
+}
+
+
+// login & register
+.bg-login {
+  background: url("../img/banner/login.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-register-image {
+  background: url("../img/banner/register.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.visible {
+  position: absolute;
+  top: 1em;
+  right: 1.5em;
+}
+
