@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Taekwondo</title>
+  <title>Taekwondo | STMIK Tasikmalaya</title>
   <?= $this->include('templates/_style.php'); ?>
 </head>
 

@@ -145,7 +145,7 @@
   <div class="row mt-3">
     <div class="col-lg-3 mb-4">
       <a href="/siswa/registrasi">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-address-card"></i>
             <div class="">
@@ -157,7 +157,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/identitas">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-user"></i>
             <div class="">
@@ -169,7 +169,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/ortu">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-users"></i>
             <div class="">
@@ -181,7 +181,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/akademik">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-graduation-cap"></i>
             <div class="">
@@ -193,7 +193,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/nilai">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-clipboard-list"></i>
             <div class="">
@@ -205,7 +205,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/prestasi">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-trophy"></i>
             <div class="">
@@ -217,7 +217,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/dokumen">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-file-alt"></i>
             <div class="">
@@ -229,7 +229,7 @@
     </div>
     <div class="col-lg-3 mb-4">
       <a href="/siswa/dokumen">
-        <div class="card bg-purple text-light shadow py-3">
+        <div class="card bg-danger text-light shadow py-3">
           <div class="card-body text-center">
             <i class="fas fa-2x fa-fw fa-bullhorn"></i>
             <div class="">

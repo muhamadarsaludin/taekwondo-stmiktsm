@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-purple sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -125,7 +125,7 @@
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    <button class="rounded-circle border-0 bg-danger text-white" id="sidebarToggle"></button>
   </div>
 
 </ul>

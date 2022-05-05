@@ -40,7 +40,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-purple btn-user btn-block">
+            <button type="submit" class="btn btn-warning btn-user btn-block">
               Register
             </button>
             <hr>
@@ -59,11 +59,7 @@
               </div>
             </div>
             <?= form_close(); ?>
-            <div class="text-center mb-2 mt-4">
-              <a class="small text-body" href="forgot-password.html">Forgot
-                password?</a>
-            </div>
-            <p class="small text-center"> Already have an account?<a class="text-wild-watermelon" href="<?= route_to('login') ?>">
+            <p class="small text-center mt-4"> Already have an account?<a class="text-warning" href="<?= route_to('login') ?>">
                 Sign In! </a></p>
           </div>
         </div>

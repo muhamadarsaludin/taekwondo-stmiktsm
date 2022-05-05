@@ -30,7 +30,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-purple btn-user btn-block ">
+            <button type="submit" class="btn btn-warning btn-user btn-block ">
               Sign In
             </button>
             <hr>
@@ -54,7 +54,7 @@
                 Password?</a>
             </div>
             <div class="text-center small">
-              No account? <a class="text-purple" href="<?= route_to('register') ?>">
+              No account? <a class="text-warning" href="<?= route_to('register') ?>">
                 Create one! </a>
             </div>
           </div>

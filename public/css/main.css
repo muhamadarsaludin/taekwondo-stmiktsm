@@ -207,6 +207,10 @@ h5 {
   width: 100%;
 }
 
+.swiper-slide img.biger{  
+  height: 60vh;
+}
+
 .card-menu {
   position: relative;
 }
