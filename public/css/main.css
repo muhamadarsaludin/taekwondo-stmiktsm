@@ -242,7 +242,7 @@ a {
 }
 
 .bg-register-image {
-  background: url("../img/register.png");
+  background: url("../img/register.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -271,4 +271,9 @@ a {
 .swiper-slide img {
   object-fit: fill;
   object-position: center;
+}
+
+.custom-overflow{
+  height: 100vh;
+  overflow: scroll;
 }
