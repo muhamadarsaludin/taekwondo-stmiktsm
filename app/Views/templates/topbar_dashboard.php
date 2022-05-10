@@ -16,7 +16,7 @@
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-profile rounded-circle mr-2" src="/img/users/<?= @user_info()->user_image; ?>">
+        <img class="img-profile rounded-circle mr-2" src="/img/users/<?= @user_info()->foto; ?>">
         <span class="d-none d-lg-inline text-gray-600 small"><?= @user_info()->username; ?></span>
       </a>
       <!-- Dropdown - User Information -->

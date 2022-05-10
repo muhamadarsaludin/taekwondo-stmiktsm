@@ -36,19 +36,17 @@ class Auth extends BaseController
     $user = $this->userModel->getByEmailOrUsername($emailOrUsername);
 
     if ($user) {
-      if (password_verify($password, $user['password_hash'])) {
-        $data = [
-          'username'    => $user['username'],
-          'email'       => $user['email'],
-          'role'        => $user['role'],
-          'user_image'  => $user['user_image'],
-          'logged_in'   => true,
-        ];
-        session()->set('user_info', $data);
+      if ($password == $user['password']) {
+        session()->set('user_info', $user);
+        session()->push('user_info', ['logged_in'=>true]);
         if ($user['role'] == 'ADMIN') {
           return redirect()->to('/admin/dashboard');
         } else {
-          return redirect()->to('/user/dashboard');
+          if($user['aktif']==1){
+            return redirect()->to('/user/dashboard');
+          }
+          session()->setFlashdata('message', 'Maaf akun belum bisa digunakan, silakan cek email secara berkala untuk informasi lebih lanjut :)');
+          return redirect()->to('/login');
         }
       } else {
         $errors = [
