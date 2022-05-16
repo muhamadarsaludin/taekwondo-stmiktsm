@@ -44,7 +44,7 @@ class Auth extends BaseController
           'username'    => $user['username'],
           'email'       => $user['email'],
           'role'        => $user['role'],
-          'user_image'  => $user['user_image'],
+          'foto'        => $user['foto'],
           'logged_in'   => true,
         ];
         session()->set('user_info', $data);

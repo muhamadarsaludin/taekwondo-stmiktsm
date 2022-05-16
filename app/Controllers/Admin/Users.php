@@ -156,4 +156,17 @@ class Users extends BaseController
     session()->setFlashdata('message', 'User berhasil dihapus!');
     return redirect()->to('/admin/users');
   }
+
+  public function approval($id)
+  {
+    $user = $this->userModel->getUserById($id);
+    $status = $this->request->getGetPost('status');
+    if ($user) {
+      $this->userModel->setActiveStatus($id, $status);
+      session()->setFlashdata('message', 'User account status has changed!');
+    } else {
+      session()->setFlashdata('error', 'User not found!');
+    }
+    return redirect()->to('/admin/users');
+  }
 }
