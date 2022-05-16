@@ -37,6 +37,11 @@ class Auth extends BaseController
 
     if ($user) {
       if (password_verify($password, $user['password_hash'])) {
+
+        if ($user['enabled'] == 0) {
+          return redirect()->to('/login')->withInput()->with('error', 'Akun anda belum bisa digunakan. Cek email secara berkala untuk informasi lebih lanjut :)');
+        }
+
         $data = [
           'username'    => $user['username'],
           'email'       => $user['email'],
@@ -77,8 +82,8 @@ class Auth extends BaseController
   public function create_account()
   {
     if (!$this->validate([
-      'email' => 'required',
-      'username' => 'required',
+      'email' => 'required|is_unique[users.email]',
+      'username' => 'required|is_unique[users.username]',
       'password' => 'required',
       'pass_confirm' => 'required|matches[password]'
     ])) {
@@ -91,11 +96,12 @@ class Auth extends BaseController
       'email' => $this->request->getPost('email', FILTER_SANITIZE_EMAIL),
       'username' => $this->request->getPost('username'),
       'password_hash' => $password_hash,
-      'role' => 'STUDENT'
+      'role' => 'STUDENT',
+      'enabled' => false
     ];
 
     $this->userModel->save($data);
-    session()->setFlashdata('message', 'Pendaftaran akun berhasil. Silakan login');
+    session()->setFlashdata('message', 'Pendaftaran akun berhasil. Cek email secara berkala untuk informasi pengaktifan akun.');
     return redirect()->to('/login');
   }
 
