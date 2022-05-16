@@ -24,6 +24,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Approve</th>
         <th>Aksi</th>
       </tr>
     </thead>
@@ -32,10 +33,17 @@
       <?php foreach ($users as $user) : ?>
         <tr>
           <td><?= $i++; ?></td>
-          <td><img width="50" src="/img/users/<?= $user['user_image']; ?>" alt="<?= $user['username']; ?> Image"></td>
+          <td><img width="50" src="/img/users/<?= $user['foto']; ?>" alt="<?= $user['username']; ?> Image"></td>
           <td><?= $user['username']; ?></td>
           <td><?= $user['email']; ?></td>
           <td><?= $user['role']; ?></td>
+          <td>
+            <?php if($user['aktif']) :?>
+            <a href="#" class="btn btn-success btn-sm small mb-1"><span class="d-sm-none d-lg-inline">Approve</span></a>
+            <?php else: ?>
+              <a href="/admin/users/approve/<?= $user['id']; ?>" class="btn btn-warning btn-sm small mb-1"><span class="d-sm-none d-lg-inline">Need APprove</span></a>
+            <?php endif; ?>
+          </td>
           <td class="text-center">
             <a href="/admin/users/detail/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
             <a href="/admin/users/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
