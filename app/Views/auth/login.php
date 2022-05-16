@@ -14,6 +14,7 @@
                 <img src="/img/logos/logo.png" alt="Logo SMK As-Saabiq" class="mb-4" width="130">
               </a>
             </div>
+            <?= view('auth\_message_block') ?>
             <?= form_open('login', ['class' => 'user']); ?>
             <div class="form-group">
               <input type="text" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Email or username" value="<?= old('login'); ?>" autofocus>
