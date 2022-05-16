@@ -7,7 +7,7 @@
 <section class="py-5">
   <div class="d-sm-flex align-items-center justify-content-between">
     <h3 class="content-heading mb-0 text-gray-800">Daftar User</h3>
-    <!-- <a href="/admin/users/add" class="d-block d-sm-inline-block btn rounded-pill btn-warning"><i class="fas fa-plus-square mr-1"></i> Tambah User</a> -->
+    <a href="/admin/users/add" class="d-block d-sm-inline-block btn rounded-pill btn-warning"><i class="fas fa-plus-square mr-1"></i> Tambah User</a>
   </div>
   <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
