@@ -32,21 +32,27 @@ class Auth extends BaseController
 
     $emailOrUsername = $this->request->getPost('login');
     $password = $this->request->getPost('password');
-
     $user = $this->userModel->getByEmailOrUsername($emailOrUsername);
 
     if ($user) {
       if ($password == $user['password']) {
-        session()->set('user_info', $user);
-        session()->push('user_info', ['logged_in'=>true]);
+        if ($user['aktif'] == 0) {
+          return redirect()->to('/login')->withInput()->with('error', 'Akun anda belum bisa digunakan. Cek email secara berkala untuk informasi lebih lanjut :)');
+        }
+
+        $data = [
+          'username'    => $user['username'],
+          'email'       => $user['email'],
+          'role'        => $user['role'],
+          'user_image'  => $user['user_image'],
+          'logged_in'   => true,
+        ];
+        session()->set('user_info', $data);
+
         if ($user['role'] == 'ADMIN') {
           return redirect()->to('/admin/dashboard');
         } else {
-          if($user['aktif']==1){
-            return redirect()->to('/user/dashboard');
-          }
-          session()->setFlashdata('message', 'Maaf akun belum bisa digunakan, silakan cek email secara berkala untuk informasi lebih lanjut :)');
-          return redirect()->to('/login');
+          return redirect()->to('/user/dashboard');
         }
       } else {
         $errors = [
@@ -112,11 +118,10 @@ class Auth extends BaseController
       'kontak' => $this->request->getPost('kontak'),
       'nama_ortu' => $this->request->getPost('nama_ortu'),
       'kontak_ortu' => $this->request->getPost('kontak_ortu'),
-       
     ];
 
     $this->userModel->save($data);
-    session()->setFlashdata('message', 'Pendaftaran berhasil akan tetapi akun belum bisa digunakan, silakan cek email secara berkala untuk informasi lebih lanjut :)');
+    session()->setFlashdata('message', 'Pendaftaran akun berhasil. Cek email secara berkala untuk informasi pengaktifan akun.');
     return redirect()->to('/login');
   }
 
