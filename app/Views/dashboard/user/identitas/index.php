@@ -4,8 +4,8 @@
 <?= $this->section('content'); ?>
 <section class="py-5">
   <div class="d-sm-flex align-items-center justify-content-between">
-    <h3 class="content-heading mb-0 text-gray-800">Detail User</h3>
-    <a href="/admin/users/edit/<?= $user['id']; ?>" class="d-block d-sm-inline-block btn rounded-pill btn-warning"><i class="fas fa-plus-square mr-1"></i> Edit User</a>
+    <h3 class="content-heading mb-0 text-gray-800">Indentitas Diri</h3>
+    <a href="/user/identitas/edit" class="d-block d-sm-inline-block btn rounded-pill btn-warning"><i class="fas fa-plus-square mr-1"></i> Edit Identitas</a>
   </div>
   <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
   <?php if (session()->getFlashdata('message')) : ?>

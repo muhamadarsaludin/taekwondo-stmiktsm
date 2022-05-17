@@ -34,6 +34,7 @@ class Users extends BaseController
     $data = [
       'title'  => 'Detail User | PPDB SMK As-Saabiq',
       'active' => 'admin-users',
+      'validation' => \Config\Services::validation(),
       'user' => $this->userModel->getWhere(['id' => $id])->getRowArray(),
     ];
     // dd($data);
