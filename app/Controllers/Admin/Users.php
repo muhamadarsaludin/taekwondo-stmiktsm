@@ -162,8 +162,13 @@ class Users extends BaseController
     $user = $this->userModel->getUserById($id);
     $status = $this->request->getGetPost('status');
     if ($user) {
-      $this->userModel->setActiveStatus($id, $status);
-      session()->setFlashdata('message', 'User account status has changed!');
+      $response = sendEmail($user['email'], $user['nama'], 'Account successfully activated - Taekwondo x Codetarian', 'email/approval_email');
+      if ($response['status']) {
+        $this->userModel->setActiveStatus($id, $status);
+        session()->setFlashdata('message', 'User account status has changed!');
+      } else {
+        session()->setFlashdata('error', $response['message']);
+      }
     } else {
       session()->setFlashdata('error', 'User not found!');
     }
