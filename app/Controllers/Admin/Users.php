@@ -34,6 +34,7 @@ class Users extends BaseController
     $data = [
       'title'  => 'Detail User | PPDB SMK As-Saabiq',
       'active' => 'admin-users',
+      'validation' => \Config\Services::validation(),
       'user' => $this->userModel->getWhere(['id' => $id])->getRowArray(),
     ];
     // dd($data);
@@ -47,35 +48,49 @@ class Users extends BaseController
       'title'  => 'Tambah User | PPDB SMK As-Saabiq',
       'active' => 'admin-users',
       'validation' => \Config\Services::validation(),
-      'roles' => $this->rolesModel->get()->getResultArray()
     ];
     return view('dashboard/admin/users/add', $data);
   }
   public function save()
   {
     if (!$this->validate([
-      'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
-      'email'    => 'required|valid_email|is_unique[users.email]',
-      'password'     => 'required|strong_password',
+      'email' => 'required|is_unique[users.email]',
+      'username' => 'required|is_unique[users.username]',
+      'password' => 'required',
       'pass_confirm' => 'required|matches[password]',
+      'nama' => 'required',
+      'tingkat' => 'required',
+      'rentang_umur' => 'required',
+      'tempat_lahir' => 'required',
+      'tanggal_lahir' => 'required',
+      'jenis_kelamin' => 'required',
+      'agama' => 'required',
+      'kontak' => 'required',
+      'nama_ortu' => 'required',
+      'kontak_ortu' => 'required',
+      'role' => 'required',
+      'aktif' => 'required',
     ])) {
-      // dd(\Config\Services::validation()->getError('username'));
       return redirect()->to('/admin/users/add')->withInput()->with('errors', $this->validator->getErrors());
     }
 
     $this->userModel->save([
-      'username' => $this->request->getVar('username'),
-      'email' => $this->request->getVar('email'),
-      'password_hash' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-      'active' => 1
-    ]);
-
-    $user = $this->userModel->getWhere(['email' => $this->request->getVar('email')])->getRowArray();
-
-
-    $this->groupsUserModel->save([
-      'group_id' => $this->request->getVar('role-id'),
-      'user_id' => $user['id'],
+      'email' => $this->request->getPost('email', FILTER_SANITIZE_EMAIL),
+      'username' => $this->request->getPost('username'),
+      'password' => $this->request->getPost('password'),
+      'role' =>  $this->request->getPost('role'),
+      'aktif' =>  $this->request->getPost('aktif'),
+      'nama' => $this->request->getPost('nama'),
+      'tingkat' => $this->request->getPost('tingkat'),
+      'rentang_umur' => $this->request->getPost('rentang_umur'),
+      'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+      'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+      'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+      'agama' => $this->request->getPost('agama'),
+      'alamat' => $this->request->getPost('alamat'),
+      'kontak' => $this->request->getPost('kontak'),
+      'nama_ortu' => $this->request->getPost('nama_ortu'),
+      'kontak_ortu' => $this->request->getPost('kontak_ortu'),
     ]);
 
     session()->setFlashdata('message', 'User baru berhasil ditambahkan!');
@@ -89,40 +104,41 @@ class Users extends BaseController
       'active' => 'admin-users',
       'validation' => \Config\Services::validation(),
       'user'  => $this->userModel->getUserById($id),
-      'roles' => $this->rolesModel->get()->getResultArray()
     ];
-    // dd($data);
     return view('dashboard/admin/users/edit', $data);
   }
 
   public function update($id)
   {
-
     $user = $this->userModel->getWhere(['id' => $id])->getRowArray();
     $email = $this->request->getVar('email');
     $username = $this->request->getVar('username');
-
-    $rules = [];
+    // $rules=[];
+    $rules = [
+      'password' => 'required',
+      'nama' => 'required',
+      'tingkat' => 'required',
+      'rentang_umur' => 'required',
+      'tempat_lahir' => 'required',
+      'tanggal_lahir' => 'required',
+      'jenis_kelamin' => 'required',
+      'agama' => 'required',
+      'kontak' => 'required',
+      'nama_ortu' => 'required',
+      'kontak_ortu' => 'required',
+      'role' => 'required',
+      'aktif' => 'required',
+    ];
 
     if ($email == $user['email']) {
-      $rules['email'] = 'required|valid_email';
+      $rules['email'] = 'required';
     } else {
-      $rules['email'] = 'required|valid_email|is_unique[users.email]';
+      $rules['email'] = 'required|is_unique[users.email]';
     }
     if ($username == $user['username']) {
-      $rules['username'] = 'required|alpha_numeric_space|min_length[3]|max_length[30]';
+      $rules['username'] = 'required';
     } else {
-      $rules['username'] = 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]';
-    }
-
-
-    $pass = $this->request->getVar('password');
-    if ($pass) {
-      $rules['password'] = 'strong_password';
-      $rules['pass_confirm'] = 'matches[password]';
-      $password = password_hash($pass, PASSWORD_BCRYPT);
-    } else {
-      $password = $user['password_hash'];
+      $rules['username'] = 'required|is_unique[users.username]';
     }
 
 
@@ -132,16 +148,22 @@ class Users extends BaseController
 
     $this->userModel->save([
       'id' => $id,
-      'username' => $username,
-      'email' => $email,
-      'password_hash' => $password,
-      'active' => 1
-    ]);
-
-    $aguId = $this->groupsUserModel->getWhere(['user_id' => $id])->getRowArray();
-    $this->groupsUserModel->save([
-      'id' => $aguId,
-      'group_id' => $this->request->getVar('role-id'),
+      'email' => $this->request->getPost('email', FILTER_SANITIZE_EMAIL),
+      'username' => $this->request->getPost('username'),
+      'password' => $this->request->getPost('password'),
+      'role' =>  $this->request->getPost('role'),
+      'aktif' =>  $this->request->getPost('aktif'),
+      'nama' => $this->request->getPost('nama'),
+      'tingkat' => $this->request->getPost('tingkat'),
+      'rentang_umur' => $this->request->getPost('rentang_umur'),
+      'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+      'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+      'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+      'agama' => $this->request->getPost('agama'),
+      'alamat' => $this->request->getPost('alamat'),
+      'kontak' => $this->request->getPost('kontak'),
+      'nama_ortu' => $this->request->getPost('nama_ortu'),
+      'kontak_ortu' => $this->request->getPost('kontak_ortu'),
     ]);
 
     session()->setFlashdata('message', 'Data user berhasil diubah!');
