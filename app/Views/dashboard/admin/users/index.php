@@ -16,6 +16,12 @@
       <?= session()->getFlashdata('message'); ?>
     </div>
   <?php endif; ?>
+
+  <?php if (session()->getFlashdata('error')) : ?>
+    <div class="alert alert-danger" role="alert">
+      <?= session()->getFlashdata('error'); ?>
+    </div>
+  <?php endif; ?>
   <table id="data-users" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
@@ -24,7 +30,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
-        <th>Approve</th>
+        <th>Status</th>
         <th>Aksi</th>
       </tr>
     </thead>
@@ -38,10 +44,10 @@
           <td><?= $user['email']; ?></td>
           <td><?= $user['role']; ?></td>
           <td>
-            <?php if($user['aktif']) :?>
-            <a href="#" class="btn btn-success btn-sm small mb-1"><span class="d-sm-none d-lg-inline">Approve</span></a>
-            <?php else: ?>
-              <a href="/admin/users/approve/<?= $user['id']; ?>" class="btn btn-warning btn-sm small mb-1"><span class="d-sm-none d-lg-inline">Need APprove</span></a>
+            <?php if ($user['aktif']) : ?>
+              <a href="/admin/users/approval/<?= $user['id']; ?>?status=0" class="btn btn-success btn-sm small mb-1 w-100"><span class="d-sm-none d-lg-inline">Approved</span></a>
+            <?php else : ?>
+              <a href="/admin/users/approval/<?= $user['id']; ?>?status=1" class="btn btn-warning btn-sm small mb-1 w-100"><span class="d-sm-none d-lg-inline">Need Approval</span></a>
             <?php endif; ?>
           </td>
           <td class="text-center">
@@ -63,6 +69,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Status</th>
         <th>Aksi</th>
       </tr>
     </tfoot>

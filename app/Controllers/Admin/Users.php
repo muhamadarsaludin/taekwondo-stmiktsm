@@ -178,4 +178,22 @@ class Users extends BaseController
     session()->setFlashdata('message', 'User berhasil dihapus!');
     return redirect()->to('/admin/users');
   }
+
+  public function approval($id)
+  {
+    $user = $this->userModel->getUserById($id);
+    $status = $this->request->getGetPost('status');
+    if ($user) {
+      $response = sendEmail($user['email'], $user['nama'], 'Account successfully activated - Taekwondo x Codetarian', 'email/approval_email');
+      if ($response['status']) {
+        $this->userModel->setActiveStatus($id, $status);
+        session()->setFlashdata('message', 'User account status has changed!');
+      } else {
+        session()->setFlashdata('error', $response['message']);
+      }
+    } else {
+      session()->setFlashdata('error', 'User not found!');
+    }
+    return redirect()->to('/admin/users');
+  }
 }

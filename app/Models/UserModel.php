@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class UserModel extends Model
 {
@@ -45,5 +46,10 @@ class UserModel extends Model
   public function getUsersByRole($role)
   {
     return $this->builder->getWhere('role', $role)->getResultArray();
+  }
+
+  public function setActiveStatus($id, $status)
+  {
+    return $this->builder->update(['aktif' => $status], ['id' => $id]);
   }
 }
