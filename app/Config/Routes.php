@@ -40,8 +40,10 @@ $routes->post('/logout', 'Auth::logout');
 $routes->post('/login', 'Auth::login_process');
 $routes->post('/register', 'Auth::create_account');
 
-
 $routes->delete('admin/users/(:num)', 'Admin\Users::delete/$1');
+$routes->delete('siswa/prestasi/(:num)', 'Siswa\Prestasi::delete/$1');
+
+$routes->put('siswa/prestasi', 'Siswa\Prestasi::update');
 
 /*
  * --------------------------------------------------------------------

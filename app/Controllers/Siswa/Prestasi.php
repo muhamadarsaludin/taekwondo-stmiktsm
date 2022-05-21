@@ -18,7 +18,7 @@ class Prestasi extends BaseController
   {
     $data = [
       'title' => 'Data Prestasi | PPDB SMK As-Saabiq',
-      'awards' => $this->prestasiModel->getAwardsByUserId(user_id()),
+      'awards' => $this->prestasiModel->getAwardsByUserId(user_info()->user_id),
     ];
     return view('dashboard/siswa/prestasi/index', $data);
   }
@@ -50,7 +50,7 @@ class Prestasi extends BaseController
     $sertifikat = $this->request->getFile('sertifikat');
 
     $sertifikatName = $sertifikat->getRandomName();
-    $sertifikat->move('doc/sertifikat', $sertifikatName);
+    $sertifikat->move('doc/siswa/sertifikat', $sertifikatName);
 
     $this->prestasiModel->save([
       'nama_prestasi' => $this->request->getPost('nama_prestasi'),
@@ -59,7 +59,7 @@ class Prestasi extends BaseController
       'penyelenggara' => $this->request->getPost('penyelenggara'),
       'tahun' => $this->request->getPost('tahun'),
       'file_sertifikat' => $sertifikatName,
-      'user_id' => user_id(),
+      'user_id' => user_info()->user_id,
     ]);
 
     session()->setFlashdata('message', 'Data prestasi berhasil ditambahkan!');
@@ -103,6 +103,16 @@ class Prestasi extends BaseController
       $sertifikat->move('doc/sertifikat', $sertifikatName);
     }
 
+    $data = [
+      'nama_prestasi' => $this->request->getPost('nama_prestasi'),
+      'peringkat' => $this->request->getPost('peringkat'),
+      'tingkat' => $this->request->getPost('tingkat'),
+      'penyelenggara' => $this->request->getPost('penyelenggara'),
+      'tahun' => $this->request->getPost('tahun'),
+      'file_sertifikat' => $sertifikatName,
+      'user_id' => user_info()->user_id,
+    ];
+
     $this->prestasiModel->update($id, [
       'nama_prestasi' => $this->request->getPost('nama_prestasi'),
       'peringkat' => $this->request->getPost('peringkat'),
@@ -110,7 +120,7 @@ class Prestasi extends BaseController
       'penyelenggara' => $this->request->getPost('penyelenggara'),
       'tahun' => $this->request->getPost('tahun'),
       'file_sertifikat' => $sertifikatName,
-      'user_id' => user_id(),
+      'user_id' => user_info()->user_id,
     ]);
 
     session()->setFlashdata('message', 'Data prestasi berhasil diubah!');

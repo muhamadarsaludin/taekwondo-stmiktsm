@@ -5,7 +5,7 @@
 <!-- Page Heading -->
 <section class="py-5">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h3 class="content-heading mb-0 text-gray-800">Tambah Prestasi</h3>
+    <h3 class="content-heading mb-0 text-gray-800">Edit Prestasi</h3>
   </div>
 
   <form action="/siswa/prestasi" method="post" class="user" enctype="multipart/form-data">
