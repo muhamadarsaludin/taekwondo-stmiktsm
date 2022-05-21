@@ -9,35 +9,10 @@
     <h3 class="content-heading mb-0 text-gray-800">Edit User</h3>
   </div>
 
-  <form action="/admin/users/update/<?= $user['id']; ?>" method="post" class="user">
+  <form action="/user/identitas/update" method="post" class="user">
     <?= csrf_field(); ?>
     <?= $validation->listErrors(); ?>
-    <div class="form-group row">
-      <label for="role" class="col-sm-2 col-form-label">Role<sup class="text-danger font-weight-bold">*</sup></label>
-      <div class="col-sm-10">
-        <select class="form-control" id="role" name="role">
-          <option>Pilih Role</option>
-          <option value="ADMIN" <?= $user['role'] == 'ADMIN' ? 'selected':''; ?>>ADMIN</option>
-          <option value="STUDENT" <?= $user['role'] == 'STUDENT' ? 'selected':''; ?>>STUDENT</option>
-        </select>
-        <div class="invalid-feedback">
-          <?= session('errors.role') ?>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="aktif" class="col-sm-2 col-form-label">Status<sup class="text-danger font-weight-bold">*</sup></label>
-      <div class="col-sm-10">
-        <select class="form-control" id="aktif" name="aktif">
-          <option value="1" <?= $user['aktif']? 'selected':''; ?>>Aktif</option>
-          <option value="0" <?= $user['aktif']? '':'selected'; ?>>Disable</option>
-        </select>
-        <div class="invalid-feedback">
-          <?= session('errors.aktif') ?>
-        </div>
-      </div>
-    </div>
+    
     <div class="form-group row">
       <label for="email" class="col-sm-2 col-form-label">Alamat Email<sup class="text-danger font-weight-bold">*</sup></label>
       <div class="col-sm-10">

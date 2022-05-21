@@ -30,29 +30,7 @@
         <i class="fas fa-fw fa-user"></i>
         <span>Daftar Users</span></a>
     </li>
-
-    <!-- Nav Tahun Akademik -->
-    <li class="nav-item">
-      <a class="nav-link" href="<?= base_url('admin/tahun'); ?>">
-        <i class="fas fa-fw fa-calendar-alt"></i>
-        <span>Tahun Akademik</span></a>
-    </li>
-
-
-    <!-- Nav Item Jurusan -->
-    <li class="nav-item">
-      <a class="nav-link" href="<?= base_url('admin/jurusan'); ?>">
-        <i class="fas fa-fw fa-graduation-cap"></i>
-        <span>Data Jurusan</span></a>
-    </li>
-
-
-    <!-- Nav Item Jalur Registrasi -->
-    <li class="nav-item">
-      <a class="nav-link" href="<?= base_url('admin/jalur'); ?>">
-        <i class="fas fa-fw fa-map-signs"></i>
-        <span>Jalur Registrasi</span></a>
-    </li>
+    
     <!-- Nav Item Registrasi -->
     <li class="nav-item">
       <a class="nav-link" href="<?= base_url('admin/registrasi'); ?>">
@@ -77,32 +55,18 @@
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="/siswa/registrasi">
         <i class="fas fa-fw fa-address-card"></i>
         <span>Registrasi</span></a>
-    </li>
+    </li> -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/siswa/identitas">
+      <a class="nav-link" href="/user/identitas">
         <i class="fas fa-fw fa-user"></i>
         <span>Identitas Diri</span></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/siswa/ortu">
-        <i class="fas fa-fw fa-users"></i>
-        <span>Data Orang Tua</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/siswa/akademik">
-        <i class="fas fa-fw fa-graduation-cap"></i>
-        <span>Data Akademik</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/siswa/nilai">
-        <i class="fas fa-fw fa-clipboard-list"></i>
-        <span>Data Nilai</span></a>
-    </li>
+
     <li class="nav-item">
       <a class="nav-link" href="/siswa/prestasi">
         <i class="fas fa-fw fa-trophy"></i>
@@ -113,11 +77,11 @@
         <i class="fas fa-fw fa-file-alt"></i>
         <span>Dokumen Pendukung</span></a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="/siswa/pengumuman">
         <i class="fas fa-2x fa-fw fa-bullhorn"></i>
         <span>Pengumuman</span></a>
-    </li>
+    </li> -->
   <?php endif; ?>
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

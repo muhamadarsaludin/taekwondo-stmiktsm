@@ -44,7 +44,7 @@ class Auth extends BaseController
           'username'    => $user['username'],
           'email'       => $user['email'],
           'role'        => $user['role'],
-          'user_image'  => $user['user_image'],
+          'foto'        => $user['foto'],
           'logged_in'   => true,
         ];
         session()->set('user_info', $data);
@@ -120,8 +120,15 @@ class Auth extends BaseController
       'kontak_ortu' => $this->request->getPost('kontak_ortu'),
     ];
 
-    $this->userModel->save($data);
-    session()->setFlashdata('message', 'Pendaftaran akun berhasil. Cek email secara berkala untuk informasi pengaktifan akun.');
+    $response = sendEmail($data['email'], $data['nama'], 'You have successfully registered - Taekwondo x Codetarian', 'email/register_email');
+
+    if ($response['status']) {
+      $this->userModel->save($data);
+      session()->setFlashdata('message', 'Pendaftaran akun berhasil. Cek email secara berkala untuk informasi pengaktifan akun.');
+    } else {
+      session()->setFlashdata('error', $response['message']);
+    }
+
     return redirect()->to('/login');
   }
 

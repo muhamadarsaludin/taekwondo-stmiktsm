@@ -40,6 +40,9 @@ $routes->post('/logout', 'Auth::logout');
 $routes->post('/login', 'Auth::login_process');
 $routes->post('/register', 'Auth::create_account');
 
+
+$routes->delete('admin/users/(:num)', 'Admin\Users::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
